@@ -1,8 +1,52 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
+<style>
+    img.img-fluid {
+        max-height: 150px;
+        object-fit: contain;
+    }
+</style>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Your Modern Office Suite</h1>
+        <p class="lead">Collaborate, Create, and Organize – All in One Place</p>
+        <a href="/Account/Login" class="btn btn-primary me-2">Login</a>
+        <a href="/Account/Register" class="btn btn-outline-secondary">Get Started</a>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="row text-center">
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="w-100 shadow p-3 rounded bg-white">
+                <img src="/Data/Images/img_Docs.png" alt="Docs" class="img-fluid mb-3" />
+                <h4>Docs</h4>
+                <p>Write and edit documents in real time with your team.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="w-100 shadow p-3 rounded bg-white">
+                <img src="/Data/Images/img_sheets.png" alt="Sheets" class="img-fluid mb-3" />
+                <h4>Sheets</h4>
+                <p>Create powerful spreadsheets with live collaboration.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="w-100 shadow p-3 rounded bg-white">
+                <img src="/Data/Images/img_Calendar.jpg" alt="Calendar" class="img-fluid mb-3" />
+                <h4>Calendar</h4>
+                <p>Stay organized with shared calendars and event planning.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <hr class="my-5" />
+
+    <div class="text-center">
+        <h2>Work Smarter, Together</h2>
+        <p>Built for teams. Designed for productivity.</p>
+        <a href="/Account/Register" class="btn btn-success">Start Free Trial</a>
+    </div>
 </div>
