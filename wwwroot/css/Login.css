@@ -1,0 +1,59 @@
+﻿body {
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    font-family: 'Poppins', sans-serif;
+    animation: fadeInBody 1s ease-in;
+}
+
+@keyframes fadeInBody {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.login-card {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #4a4a4a;
+    font-weight: 600;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(116, 235, 213, 0.5);
+    border-color: #74ebd5;
+}
+
+.btn-primary {
+    background-color: #74ebd5;
+    border-color: #74ebd5;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #5ed0c5;
+        border-color: #5ed0c5;
+    }
