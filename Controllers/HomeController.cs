@@ -38,6 +38,15 @@ namespace OfficeSuit.Controllers
             }
         }
 
+        public IActionResult Registration()
+        {
+            return View();
+        }
 
+        public IActionResult UserRegistration(UserInfo userInfo)
+        {
+
+            return View();
+        }
     }
 }

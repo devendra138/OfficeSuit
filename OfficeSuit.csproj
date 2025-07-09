@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <None Include="wwwroot\Data\Images\img_Calendar.jpg" />
-    <None Include="wwwroot\Data\Images\img_Docs.png" />
     <None Include="wwwroot\Data\Images\img_sheets.png" />
   </ItemGroup>
 
