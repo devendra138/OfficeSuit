@@ -89,7 +89,6 @@ namespace OfficeSuit.Controllers
                     catch (Exception ex)
                     {
                         TempData["Info"] = "An error occurred during registration. Please try again.";
-                        // Log error (ex)
                         return RedirectToAction("Registration");
                     }
                 }
