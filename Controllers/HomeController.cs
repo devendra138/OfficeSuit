@@ -10,7 +10,7 @@ namespace OfficeSuit.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly string connectionString = "Server=DESKTOP-IDJHK8U;Database=OfficeSuit;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+        private readonly string connectionString = "Server=LAPTOP-AEMNNG68\\SQLEXPRESS01;Database=OfficeSuit;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
 
 
 
