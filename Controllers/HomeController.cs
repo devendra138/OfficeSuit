@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using OfficeSuit.Models;
 using System.Data;
@@ -45,6 +46,12 @@ namespace OfficeSuit.Controllers
 
         public IActionResult Registration()
         {
+            ViewBag.DesignationList = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Software Developer", Value = "1" },
+                new SelectListItem { Text = "Manager", Value = "2" },
+                new SelectListItem { Text = "Tester", Value = "3" }
+            };
             return View();
         }
 
@@ -62,7 +69,7 @@ namespace OfficeSuit.Controllers
                     cmd.Parameters.AddWithValue("@Password", user.Password);
                     cmd.Parameters.AddWithValue("@Contact", user.Contact);
                     cmd.Parameters.AddWithValue("@Gender", user.Gender);
-                    cmd.Parameters.AddWithValue("@Designation", user.Designation);
+                    cmd.Parameters.AddWithValue("@DesignationId", user.DesignationId);
 
                     try
                     {

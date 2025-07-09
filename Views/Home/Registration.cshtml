@@ -8,15 +8,15 @@
 <script>
     @if (TempData["Info"] != null)
     {
-                var message = TempData["Info"].ToString();
-                var iconType = message == "Registration successful." ? "success" : "error";
-                <text>
-                    Swal.fire({
-                        icon: '@iconType',
-                        title: '@(iconType == "success" ? "Success" : "Error")',
-                        text: '@message'
-                    });
-                </text>
+                    var message = TempData["Info"].ToString();
+                    var iconType = message == "Registration successful." ? "success" : "error";
+                    <text>
+                        Swal.fire({
+                            icon: '@iconType',
+                            title: '@(iconType == "success" ? "Success" : "Error")',
+                            text: '@message'
+                        });
+                    </text>
     }
 </script>
 <!-- Include Animate.css CDN -->
@@ -76,9 +76,11 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label asp-for="Designation" class="form-label"></label>
-                            <input asp-for="Designation" class="form-control" />
-                            <span asp-validation-for="Designation" class="text-danger small"></span>
+                            <label asp-for="DesignationId" class="form-label"></label>
+                            <select asp-for="DesignationId" class="form-control" asp-items="ViewBag.DesignationList">
+                                <option value="">-- Select Designation --</option>
+                            </select>
+                            <span asp-validation-for="DesignationId" class="text-danger small"></span>
                         </div>
 
                         <div class="col-12 mt-3">

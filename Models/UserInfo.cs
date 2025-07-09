@@ -33,8 +33,7 @@ namespace OfficeSuit.Models
         public string Gender { get; set; } // Could also be an enum
 
         [Required(ErrorMessage = "Designation is required")]
-        [StringLength(100)]
-        public string Designation { get; set; }
+        public int DesignationId { get; set; }
 
         public bool IsActive { get; set; } = true;
 
