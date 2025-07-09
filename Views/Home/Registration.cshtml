@@ -5,6 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml"; // Optional, depending on your layout
 }
 
+<script>
+    @if (TempData["Info"] != null)
+    {
+                var message = TempData["Info"].ToString();
+                var iconType = message == "Registration successful." ? "success" : "error";
+                <text>
+                    Swal.fire({
+                        icon: '@iconType',
+                        title: '@(iconType == "success" ? "Success" : "Error")',
+                        text: '@message'
+                    });
+                </text>
+    }
+</script>
 <!-- Include Animate.css CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <link rel="stylesheet" href="~/css/Registration.css">
