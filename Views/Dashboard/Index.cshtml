@@ -1,3 +1,50 @@
 ﻿@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
+
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        let chart;
+        let data;
+
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(() => drawChart(true)); // default to 3D
+
+        function drawChart(is3D) {
+            data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Task1', 11],
+                ['Task2', 2],
+                ['Task3', 2],
+                ['Task4', 2],
+                ['Task5', 7]
+            ]);
+
+            const options = {
+                title: 'My Daily Activities',
+                is3D: is3D
+            };
+
+            chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+        function make2d() {
+            drawChart(false);
+        }
+
+        function make3d() {
+            drawChart(true);
+        }
+    </script>
+</head>
+<body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    <div class="mt-3" style="padding-left:20px">
+        <button class="btn btn-outline-secondary me-2" onclick="make2d()">2D View</button>
+        <button class="btn btn-outline-primary" onclick="make3d()">3D View</button>
+    </div>
+</body>
+</html>
