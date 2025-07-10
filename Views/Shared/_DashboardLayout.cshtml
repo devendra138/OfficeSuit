@@ -1,0 +1,106 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OfficeSuit</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        #wrapper {
+            display: flex;
+        }
+
+        #sidebar-wrapper {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            transition: all 0.3s ease;
+            height: 90vh;
+        }
+
+            #sidebar-wrapper .list-group-item {
+                background-color: #343a40;
+                color: white;
+                border: none;
+            }
+
+                #sidebar-wrapper .list-group-item:hover {
+                    background-color: #495057;
+                }
+
+        #page-content-wrapper {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -250px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OfficeSuit</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 fw-bold border-bottom">OfficeSuit</div>
+            <div class="list-group list-group-flush">
+                <a asp-controller="Dashboard" asp-action="Index" class="list-group-item">Dashboard</a>
+                <a asp-controller="User" asp-action="Profile" class="list-group-item">Profile</a>
+                <a asp-controller="User" asp-action="Settings" class="list-group-item">Settings</a>
+                <a asp-controller="Home" asp-action="Logout" class="list-group-item">Logout</a>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3">
+                <div class="container-fluid">
+                    <button class="btn btn-outline-dark" id="menu-toggle">☰</button>
+                    <span class="navbar-text ms-3 fw-semibold text-primary">👤 @ViewBag.UserName</span>
+                </div>
+            </nav>
+
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - OfficeSuit - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("wrapper").classList.toggle("toggled");
+        });
+    </script>
+</body>
+</html>

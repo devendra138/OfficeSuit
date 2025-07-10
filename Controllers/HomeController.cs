@@ -35,13 +35,20 @@ namespace OfficeSuit.Controllers
             if (username == "Darshan" && password == "Darshan@123")
             {
                 TempData["Info"] = "Login Successful.";
-                return RedirectToAction("Login");
+                HttpContext.Session.SetString("UserName", "Darshan");
+                return RedirectToAction("Index", "Dashboard");
             }
             else
             {
                 TempData["Info"] = "Wrong username or password. Please try again.";
                 return RedirectToAction("Login");
             }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Registration()
@@ -78,7 +85,7 @@ namespace OfficeSuit.Controllers
                         if (rowsAffected > 0)
                         {
                             TempData["Info"] = "Registration successful.";
-                            return RedirectToAction("Registration");
+                            return RedirectToAction("Index");
                         }
                         else
                         {
