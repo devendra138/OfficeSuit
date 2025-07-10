@@ -34,7 +34,6 @@ namespace OfficeSuit.Controllers
         {
             if (username == "Darshan" && password == "Darshan@123")
             {
-                TempData["Info"] = "Login Successful.";
                 HttpContext.Session.SetString("UserName", "Darshan");
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -84,7 +83,6 @@ namespace OfficeSuit.Controllers
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                            TempData["Info"] = "Registration successful.";
                             return RedirectToAction("Index");
                         }
                         else
