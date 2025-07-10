@@ -1,11 +1,7 @@
-﻿.card-form {
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    padding: 30px;
-    animation: fadeIn 1s ease-in-out;
+﻿body {
+    background: url('/data/images/img_bg_registration.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
-
 .form-label {
     font-weight: 600;
 }
@@ -36,5 +32,53 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.card-form {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.divider {
+    height: 2px;
+    width: auto;
+    background-color: #007bff;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+.glow-text {
+    color: #ffffff;
+    text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 15px #0056b3;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.card-border-wrapper {
+    position: relative;
+    padding: 3px; /* space for the border */
+    border-radius: 18px;
+    background: linear-gradient(270deg, #007bff, #00ffc3, #007bff);
+    background-size: 600% 600%;
+    animation: borderAnimation 5s linear infinite;
+}
+
+/* Animation for rotating gradient border */
+@keyframes borderAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }
