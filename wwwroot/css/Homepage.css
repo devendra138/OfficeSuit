@@ -3,11 +3,10 @@
     object-fit: contain;
 }
 
-.hero-section {
+body {
     background: url('/Data/Images/img_Back1.jpg') no-repeat center center;
     background-size: cover;
     color: white;
-    padding: 100px 20px;
     border-radius: 8px;
 }
 
@@ -16,3 +15,47 @@
     padding: 60px 20px;
     border-radius: 8px;
 }
+
+.hero-section {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-bottom: 40px;
+}
+
+.card-hover-box {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+    cursor: pointer;
+}
+
+    .card-hover-box:hover {
+        transform: scale(1.05) rotateX(4deg) rotateY(-4deg);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    }
+
+.row.text-center {
+    perspective: 1000px;
+}
+
+    .card-hover-box::after {
+        content: attr(data-hover);
+        position: absolute;
+        bottom: 110%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        border-radius: 5px;
+        opacity: 0;
+        white-space: nowrap;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .card-hover-box:hover::after {
+        opacity: 1;
+    }
+
+
