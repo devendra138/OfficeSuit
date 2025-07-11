@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using OfficeSuit.Models;
 using System.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace OfficeSuit.Controllers
 {
@@ -10,13 +11,12 @@ namespace OfficeSuit.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly string connectionString = "Server=LAPTOP-AEMNNG68\\SQLEXPRESS01;Database=OfficeSuit;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;";
+        private readonly IConfiguration _configuration;
 
-
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
         public IActionResult Index()
@@ -63,6 +63,8 @@ namespace OfficeSuit.Controllers
 
         public IActionResult UserRegistration(UserInfo user)
         {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("InsertUserInfo", conn))
