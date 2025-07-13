@@ -13,34 +13,56 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
+             style="background: linear-gradient(135deg, rgba(20,20,20,0.8), rgba(60,60,60,0.6));
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border-radius: 0 0 12px 12px;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OfficeSuit</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"
+                   style="color: white; font-weight: bold;">OfficeSuit</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"
+                               style="color: white; transition: 0.3s; text-shadow: 0 1px 2px black;"
+                               onmouseover="this.style.color='#ffd700'"
+                               onmouseout="this.style.color='white'">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"></a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"
+                               style="color: white; transition: 0.3s;"
+                               onmouseover="this.style.color='#ffd700'"
+                               onmouseout="this.style.color='white'">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About"
+                               style="color: white; transition: 0.3s;"
+                               onmouseover="this.style.color='#ffd700'"
+                               onmouseout="this.style.color='white'">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact"
+                               style="color: white; transition: 0.3s;"
+                               onmouseover="this.style.color='#ffd700'"
+                               onmouseout="this.style.color='white'">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="FeedBack">FeedBack</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="FeedBack"
+                               style="color: white; transition: 0.3s;"
+                               onmouseover="this.style.color='#ffd700'"
+                               onmouseout="this.style.color='white'">FeedBack</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
