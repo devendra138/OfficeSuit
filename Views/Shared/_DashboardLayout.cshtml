@@ -48,6 +48,50 @@
             margin-left: -250px;
         }
     </style>
+
+    <!-- 🧠 Chatbot Toggle -->
+    <style>
+        #chat-toggle-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+
+        #chat-iframe-wrapper {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            z-index: 9998;
+            display: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+            #chat-iframe-wrapper iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                border-radius: 15px;
+            }
+    </style>
+
+    <script>
+        function toggleChat() {
+            const chatBox = document.getElementById("chat-iframe-wrapper");
+            chatBox.style.display = chatBox.style.display === "none" ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -125,6 +169,12 @@
 
             <main role="main" class="pb-3">
                 @RenderBody()
+                <!-- 🔘 Toggle Button -->
+                <button id="chat-toggle-btn" onclick="toggleChat()">💬 Chat</button>
+                <!-- 💬 Chat Iframe -->
+                <div id="chat-iframe-wrapper">
+                    <iframe src="https://www.chatbase.co/chatbot-iframe/t5lHGCW65IGBmFpnaWfNR"></iframe>
+                </div>
             </main>
         </div>
     </div>
