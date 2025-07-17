@@ -54,6 +54,7 @@ namespace OfficeSuit.Controllers
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
+                        int employeeId = 0;
                         string firstName = "";
                         string lastName = "";
                         int designationId = 0;
@@ -63,6 +64,7 @@ namespace OfficeSuit.Controllers
                             firstName = reader["FirstName"].ToString();
                             lastName = reader["LastName"].ToString();
                             designationId = Convert.ToInt32(reader["DesignationId"]);
+                            employeeId = Convert.ToInt32(reader["UserId"]);
                         }
 
                         // Important: CLOSE the reader before accessing output param
@@ -73,12 +75,14 @@ namespace OfficeSuit.Controllers
                         {
                             case 1:
                                 // Store in session
+                                HttpContext.Session.SetInt32("EmployeeId", employeeId);
                                 HttpContext.Session.SetString("FirstName", firstName);
                                 HttpContext.Session.SetString("LastName", lastName);
                                 HttpContext.Session.SetString("Designation", GetDesignationName(Convert.ToInt32(designationId)));
                                 HttpContext.Session.SetString("Email", email); // optional
 
                                 TempData["Info"] = "Login successful.";
+                                MarkAttendance(employeeId);
                                 return RedirectToAction("Index", "Dashboard");
 
                             case -1:
@@ -171,6 +175,30 @@ namespace OfficeSuit.Controllers
                 case 3: return "Software Developer";
                 case 4: return "Tester";
                 default: return "Unknown";
+            }
+        }
+
+        void MarkAttendance(int employeeId)
+        {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("InsertAttendance", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                    SqlParameter output = new SqlParameter("@Result", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(output);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    int result = (int)cmd.Parameters["@Result"].Value;
+                }
             }
         }
     }
