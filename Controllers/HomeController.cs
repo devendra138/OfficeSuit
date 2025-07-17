@@ -143,13 +143,28 @@ namespace OfficeSuit.Controllers
                     cmd.Parameters.AddWithValue("@Gender", user.Gender);
                     cmd.Parameters.AddWithValue("@DesignationId", user.DesignationId);
 
+                    // OUTPUT parameter
+                    SqlParameter resultParam = new SqlParameter("@Result", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(resultParam);
+
                     try
                     {
                         conn.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        if (rowsAffected > 0)
+                        cmd.ExecuteNonQuery();
+                        int result = (int)resultParam.Value;
+
+                        if (result == 1)
                         {
+                            TempData["Success"] = "User registered successfully.";
                             return RedirectToAction("Index");
+                        }
+                        else if (result == -1)
+                        {
+                            TempData["Info"] = "Email already exists. Please try a different one.";
+                            return RedirectToAction("Registration");
                         }
                         else
                         {
@@ -165,6 +180,7 @@ namespace OfficeSuit.Controllers
                 }
             }
         }
+
 
         string GetDesignationName(int designationCode)
         {
