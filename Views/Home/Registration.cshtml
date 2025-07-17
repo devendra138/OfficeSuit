@@ -6,19 +6,43 @@
 }
 
 <script>
+    @if (TempData["Success"] != null)
+    {
+        var message = TempData["Success"].ToString();
+        <text>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '@message'
+            });
+        </text>
+    }
+
     @if (TempData["Info"] != null)
     {
-                        var message = TempData["Info"].ToString();
-                        var iconType = message == "Registration successful." ? "success" : "error";
-                        <text>
-                            Swal.fire({
-                                icon: '@iconType',
-                                title: '@(iconType == "success" ? "Success" : "Error")',
-                                text: '@message'
-                            });
-                        </text>
+        var message = TempData["Info"].ToString();
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Info',
+                text: '@message'
+            });
+        </text>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        var message = TempData["Error"].ToString();
+        <text>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: '@message'
+            });
+        </text>
     }
 </script>
+
 <!-- Include Animate.css CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 <link href="~/css/registration.css" rel="stylesheet" />
@@ -99,8 +123,6 @@
         </div>
     </div>
 </div>
-
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

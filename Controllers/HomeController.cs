@@ -159,7 +159,7 @@ namespace OfficeSuit.Controllers
                         if (result == 1)
                         {
                             TempData["Success"] = "User registered successfully.";
-                            return RedirectToAction("Index");
+                            return RedirectToAction("Registration");
                         }
                         else if (result == -1)
                         {
@@ -168,13 +168,13 @@ namespace OfficeSuit.Controllers
                         }
                         else
                         {
-                            TempData["Info"] = "Registration failed. Please try again.";
+                            TempData["Error"] = "Registration failed. Please try again.";
                             return RedirectToAction("Registration");
                         }
                     }
                     catch (Exception ex)
                     {
-                        TempData["Info"] = "An error occurred during registration. Please try again.";
+                        TempData["Error"] = "An error occurred during registration. Please try again.";
                         return RedirectToAction("Registration");
                     }
                 }
