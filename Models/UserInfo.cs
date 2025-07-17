@@ -37,7 +37,7 @@ namespace OfficeSuit.Models
         [Required(ErrorMessage = "Designation is required")]
         public int DesignationId { get; set; }
 
-        public bool IsActive { get; set; } = true;
+        public int IsActive { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;

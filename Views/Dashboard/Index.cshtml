@@ -63,6 +63,8 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Designation</th>
+                            <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-center">
@@ -87,6 +89,43 @@
                                             };
                                         }
                                         @designation
+                                    </td>
+                                    <td>
+                                        @{
+                                            string statusText = user.IsActive switch
+                                            {
+                                                1 => "Approved",
+                                                2 => "Rejected",
+                                                _ => "Pending"
+                                            };
+                                        }
+                                        <span class="badge bg-@(user.IsActive == 1 ? "success" : user.IsActive == 2 ? "danger" : "warning")">
+                                            @statusText
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @if (user.IsActive == 0)
+                                        {
+                                            <form asp-action="UpdateUserStatus" asp-controller="Dashboard" method="post" class="d-inline">
+                                                <input type="hidden" name="userId" value="@user.UserId" />
+                                                <input type="hidden" name="status" value="1" />
+                                                <button type="submit" class="btn btn-sm btn-success me-2">Approve</button>
+                                            </form>
+
+                                            <form asp-action="UpdateUserStatus" asp-controller="Dashboard" method="post" class="d-inline">
+                                                <input type="hidden" name="userId" value="@user.UserId" />
+                                                <input type="hidden" name="status" value="2" />
+                                                <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                            </form>
+                                        }
+                                        else if (user.IsActive == 2)
+                                        {
+                                        <span class="text-muted">❌ Rejected</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">✔ Approved</span>
+                                        }
                                     </td>
                                 </tr>
                             }

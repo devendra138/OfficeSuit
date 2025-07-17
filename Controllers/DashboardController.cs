@@ -62,7 +62,8 @@ namespace OfficeSuit.Controllers
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
                                 Email = reader["Email"].ToString(),
-                                DesignationId = Convert.ToInt32(reader["DesignationId"])
+                                DesignationId = Convert.ToInt32(reader["DesignationId"]),
+                                IsActive = Convert.ToInt32(reader["IsActive"])
                             };
                             userList.Add(user);
                         }
@@ -71,6 +72,24 @@ namespace OfficeSuit.Controllers
             }
 
             return userList;
+        }
+
+        public IActionResult UpdateUserStatus(int userId, int status)
+        {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("UpdateUserStatus", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                cmd.Parameters.AddWithValue("@IsActive", status);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("UserList");
         }
     }
 }
