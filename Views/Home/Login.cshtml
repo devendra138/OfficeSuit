@@ -27,8 +27,11 @@
         <h3>🔐 Login to Your Account</h3>
         <form method="post" asp-controller="Home" asp-action="LoginUser">
             <div class="mb-3">
-                <label for="Username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="Username" name="Username" required placeholder="Enter your username" />
+                <label for="Email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" required placeholder="Enter your Email" />
+                <div class="invalid-feedback">
+                    Please enter a valid email address.
+                </div>
             </div>
             <div class="mb-3">
                 <label for="Password" class="form-label">Password</label>
@@ -39,7 +42,7 @@
             </div>
         </form>
         <div class="login-footer">
-            <p>Don't have an account? <a href="#">Register</a></p>
+            <p>Don't have an account? <a href="/Home/Registration">Register</a></p>
         </div>
     </div>
 </div>

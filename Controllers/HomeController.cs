@@ -30,23 +30,83 @@ namespace OfficeSuit.Controllers
         }
 
         [HttpPost]
-        public IActionResult LoginUser(string username, string password)
+        public IActionResult LoginUser(string email, string password)
         {
-            if (username == "Darshan" && password == "Darshan@123")
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("CheckLoginAccess", conn))
             {
-                HttpContext.Session.SetString("UserName", "Darshan");
-                return RedirectToAction("Index", "Dashboard");
-            }
-            else
-            {
-                TempData["Info"] = "Wrong username or password. Please try again.";
-                return RedirectToAction("Login");
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Password", password);
+
+                SqlParameter outputParam = new SqlParameter("@Result", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outputParam);
+
+                try
+                {
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        string firstName = "";
+                        string lastName = "";
+                        int designationId = 0;
+
+                        if (reader.Read())
+                        {
+                            firstName = reader["FirstName"].ToString();
+                            lastName = reader["LastName"].ToString();
+                            designationId = Convert.ToInt32(reader["DesignationId"]);
+                        }
+
+                        // Important: CLOSE the reader before accessing output param
+                        reader.Close();
+                        int result = (int)cmd.Parameters["@Result"].Value;
+
+                        switch (result)
+                        {
+                            case 1:
+                                // Store in session
+                                HttpContext.Session.SetString("FirstName", firstName);
+                                HttpContext.Session.SetString("LastName", lastName);
+                                HttpContext.Session.SetString("Designation", GetDesignationName(Convert.ToInt32(designationId)));
+                                HttpContext.Session.SetString("Email", email); // optional
+
+                                TempData["Info"] = "Login successful.";
+                                return RedirectToAction("Index", "Dashboard");
+
+                            case -1:
+                                TempData["Info"] = "Invalid email or password.";
+                                return RedirectToAction("Login");
+
+                            case -2:
+                                TempData["Info"] = "Duplicate user entry detected.";
+                                return RedirectToAction("Login");
+
+                            default:
+                                TempData["Info"] = "Unknown login status.";
+                                return RedirectToAction("Login");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    TempData["Info"] = "An error occurred: " + ex.Message;
+                    return RedirectToAction("Login");
+                }
             }
         }
 
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            TempData["Info"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -54,9 +114,9 @@ namespace OfficeSuit.Controllers
         {
             ViewBag.DesignationList = new List<SelectListItem>
             {
-                new SelectListItem { Text = "Software Developer", Value = "1" },
                 new SelectListItem { Text = "Manager", Value = "2" },
-                new SelectListItem { Text = "Tester", Value = "3" }
+                new SelectListItem { Text = "Software Developer", Value = "3" },
+                new SelectListItem { Text = "Tester", Value = "4" }
             };
             return View();
         }
@@ -99,6 +159,18 @@ namespace OfficeSuit.Controllers
                         return RedirectToAction("Registration");
                     }
                 }
+            }
+        }
+
+        string GetDesignationName(int designationCode)
+        {
+            switch (designationCode)
+            {
+                case 1: return "Admin";
+                case 2: return "Manager";
+                case 3: return "Software Developer";
+                case 4: return "Tester";
+                default: return "Unknown";
             }
         }
     }
