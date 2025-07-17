@@ -41,5 +41,6 @@ namespace OfficeSuit.Models
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
     }
 }

@@ -1,10 +1,13 @@
-﻿@{
+﻿@model List<UserInfo>
+
+
+@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
 <html>
 <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @* <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         let chart;
         let data;
@@ -38,13 +41,66 @@
         function make3d() {
             drawChart(true);
         }
-    </script>
+    </script> *@
 </head>
 <body>
-    <div id="piechart" style="width: 900px; height: 500px;"></div>
+    @* <div id="piechart" style="width: 900px; height: 500px;"></div>
     <div class="mt-3" style="padding-left:20px">
         <button class="btn btn-outline-secondary me-2" onclick="make2d()">2D View</button>
         <button class="btn btn-outline-primary" onclick="make3d()">3D View</button>
+    </div> *@
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded">
+            <div class="card-header bg-primary text-white text-center fs-4 fw-semibold">
+                👥 All Users
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-bordered table-hover mb-0">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>User ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Designation</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var user in Model)
+                            {
+                                <tr>
+                                    <td>@user.UserId</td>
+                                    <td>@user.FirstName</td>
+                                    <td>@user.LastName</td>
+                                    <td>@user.Email</td>
+                                    <td>
+                                        @{
+                                            var designation = user.DesignationId switch
+                                            {
+                                                1 => "Admin",
+                                                2 => "Manager",
+                                                3 => "Software Developer",
+                                                4 => "Tester",
+                                                _ => "Unknown"
+                                            };
+                                        }
+                                        @designation
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center text-danger">No users found.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
