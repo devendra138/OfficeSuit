@@ -4,9 +4,9 @@
 <head>
 
     <script>
-        @if (TempData["Info"] != null)
+        @if (TempData["Login"] != null)
         {
-                var message = TempData["Info"].ToString();
+                var message = TempData["Login"].ToString();
                 var iconType = message == "Login Successful." ? "success" : "error";
                 <text>
                     Swal.fire({

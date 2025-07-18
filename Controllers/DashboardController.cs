@@ -19,6 +19,7 @@ namespace OfficeSuit.Controllers
         }
         public IActionResult Index()
         {
+            TempData["Login"] = null;
             var users = GetAllUsers();
             return View(users);
         }
@@ -27,17 +28,30 @@ namespace OfficeSuit.Controllers
         {
             var profile = new UserProfile
             {
-                Name = "Darshan Rawool",
-                Email = "darshan@example.com",
-                Designation = "Software Developer",
+                Name = $"{HttpContext.Session.GetString("FirstName")}",
+                Email = HttpContext.Session.GetString("Email"),
+                Designation = HttpContext.Session.GetString("Designation"),
                 ProfileImage = "/images/profile.jpg"
             };
             return View(profile);
         }
 
         public IActionResult EditProfile(UserProfile userProfile)
-        {            
-            return View(userProfile);
+        {
+            string connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("UpdateUserInfo", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@FirstName", userProfile.Name);
+                cmd.Parameters.AddWithValue("@Designation", userProfile.Designation);
+                cmd.Parameters.AddWithValue("@IsActive", userProfile.Email);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            return View();
         }
 
         public List<UserInfo> GetAllUsers()

@@ -81,27 +81,27 @@ namespace OfficeSuit.Controllers
                                 HttpContext.Session.SetString("Designation", GetDesignationName(Convert.ToInt32(designationId)));
                                 HttpContext.Session.SetString("Email", email); // optional
 
-                                TempData["Info"] = "Login successful.";
+                                TempData["Login"] = "Login successful.";
                                 MarkAttendance(employeeId);
                                 return RedirectToAction("Index", "Dashboard");
 
                             case -1:
-                                TempData["Info"] = "Invalid email or password.";
+                                TempData["Login"] = "Invalid email or password.";
                                 return RedirectToAction("Login");
 
                             case -2:
-                                TempData["Info"] = "Duplicate user entry detected.";
+                                TempData["Login"] = "Duplicate user entry detected.";
                                 return RedirectToAction("Login");
 
                             default:
-                                TempData["Info"] = "Unknown login status.";
+                                TempData["Login"] = "Unknown login status.";
                                 return RedirectToAction("Login");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    TempData["Info"] = "An error occurred: " + ex.Message;
+                    TempData["Login"] = "An error occurred: " + ex.Message;
                     return RedirectToAction("Login");
                 }
             }
