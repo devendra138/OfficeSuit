@@ -103,7 +103,7 @@ namespace OfficeSuit.Controllers
                 cmd.ExecuteNonQuery();
             }
 
-            return RedirectToAction("UserList");
+            return RedirectToAction("Index");
         }
     }
 }
