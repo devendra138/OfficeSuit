@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,47 @@ namespace OfficeSuit.Controllers
             _logger = logger;
             _configuration = configuration;
         }
+
+        public IActionResult SetView()
+        {
+            int designationId = Convert.ToInt32(HttpContext.Session.GetString("DesignationId"));
+            switch (designationId)
+            {
+                case 1:
+                    return RedirectToAction("Index");
+
+                case 2:
+                    return RedirectToAction("ManagerPage");
+
+                case 3:
+                    return RedirectToAction("DeveloperPage");
+
+                case 4:
+                    return RedirectToAction("TesterPage");
+
+                default:
+                    return RedirectToAction("");
+            }
+        }
+
+        public IActionResult ManagerPage()
+        {
+            TempData["Login"] = null;
+            return View();
+        }
+
+        public IActionResult DeveloperPage()
+        {
+            TempData["Login"] = null;
+            return View();
+        }
+
+        public IActionResult TesterPage()
+        {
+            TempData["Login"] = null;
+            return View();
+        }
+
         public IActionResult Index()
         {
             TempData["Login"] = null;
