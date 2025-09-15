@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using OfficeSuit.Models;
 using System.Data;
-using Microsoft.Extensions.Configuration;
 
 namespace OfficeSuit.Controllers
 {
