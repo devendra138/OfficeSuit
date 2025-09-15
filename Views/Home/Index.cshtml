@@ -3,259 +3,56 @@
 }
 <head>
     <link rel="stylesheet" href="~/css/Homepage.css">
-    <style>
-        /* Analog Clock Style */
-        .clock {
-            width: 200px;
-            height: 200px;
-            border: 8px solid #28a745;
-            border-radius: 50%;
-            position: relative;
-            margin: 20px auto;
-            background: white;
-        }
-        /* Common Hand Style */
-        .hand {
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            background: black;
-            top: 50%;
-            left: 50%;
-            transform-origin: 0% 50%;
-            transform: rotate(90deg);
-            transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.3, 1);
-        }
-
-            .hand.hour {
-                width: 30%;
-                height: 5px;
-                background: #333;
-            }
-
-            .hand.minute {
-                width: 40%;
-                height: 4px;
-                background: #28a745;
-            }
-
-            .hand.second {
-                width: 45%;
-                height: 2px;
-                background: red;
-            }
-
-        .center-circle {
-            width: 14px;
-            height: 14px;
-            background: black;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-        /* Numbers inside clock */
-        .number {
-            position: absolute;
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-            transform: translate(-50%, -50%);
-        }
-
-        .num1 {
-            top: 20%;
-            left: 72%;
-        }
-
-        .num2 {
-            top: 34%;
-            left: 87%;
-        }
-
-        .num3 {
-            top: 50%;
-            left: 93%;
-        }
-
-        .num4 {
-            top: 66%;
-            left: 87%;
-        }
-
-        .num5 {
-            top: 80%;
-            left: 72%;
-        }
-
-        .num6 {
-            top: 88%;
-            left: 50%;
-        }
-
-        .num7 {
-            top: 80%;
-            left: 28%;
-        }
-
-        .num8 {
-            top: 66%;
-            left: 13%;
-        }
-
-        .num9 {
-            top: 50%;
-            left: 7%;
-        }
-
-        .num10 {
-            top: 34%;
-            left: 13%;
-        }
-
-        .num11 {
-            top: 20%;
-            left: 28%;
-        }
-
-        .num12 {
-            top: 12%;
-            left: 50%;
-        }
-
-        /* Tick Marks */
-        .tick {
-            position: absolute;
-            width: 2px;
-            height: 10px;
-            background: #333;
-            top: 0;
-            left: 50%;
-            transform-origin: center 95px; /* radius */
-        }
-
-            .tick.hour-mark {
-                height: 14px;
-                background: #000;
-            }
-
-        /* Optional: Responsive adjustments */
-        @@media (max-width: 768px) {
-            .clock {
-                width: 160px;
-                height: 160px;
-            }
-
-            .number {
-                font-size: 14px;
-            }
-        }
-    </style>
 </head>
 
-<div class="container my-5">
-    <div class="hero-section">
+<body>
+    <div class="container my-5">
+        <div class="hero-section">
 
-        <div class="hero-overlay text-center mb-5">
-            <h1 class="display-4">Your Modern Office Suite</h1>
-            <p class="lead">Collaborate, Create, and Organize – All in One Place</p>
-            <a href="/Home/Login" class="btn btn-primary me-2">Login</a>
-            <a href="/Home/Registration" class="btn btn-info">Get Started</a>
+            <div class="hero-overlay text-center mb-5">
+                <h1 class="display-4">Your Modern Office Suite</h1>
+                <p class="lead">Collaborate, Create, and Organize – All in One Place</p>
+                <a href="/Home/Login" class="btn btn-primary me-2">Login</a>
+                <a href="/Home/Registration" class="btn btn-info">Get Started</a>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="w-100 shadow p-3 rounded card-hover-box">
+                        <img src="/Data/Images/Icon_project.png" alt="Docs" class="img-fluid mb-3" />
+                        <h4>Project</h4>
+                        <p>Create, Manage the project efficiently.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="w-100 shadow p-3 rounded card-hover-box">
+                        <img src="/Data/Images/Icon_Management.jpg" alt="Sheets" class="img-fluid mb-3" />
+                        <h4>Management</h4>
+                        <p>Manage team, software development life cycle, planning and tracking the progress.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <div class="w-100 shadow p-3 rounded card-hover-box">
+                        <img src="/Data/Images/img_Calendar.jpg" alt="Calendar" class="img-fluid mb-3" />
+                        <h4>Timesheet</h4>
+                        <p>Stay organized with Timesheet which helps in auto attendance for employees.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-5" />
+
+            <!-- Work Smarter Section (Clock Removed) -->
+            <div class="row align-items-center justify-content-center my-5">
+                <div class="col-md-8 text-center">
+                    <h2>Work Smarter, Together</h2>
+                    <p>Built for teams. Designed for productivity.</p>
+                    <a href="/Home/Registration" class="btn btn-success">Register</a>
+                </div>
+            </div>
+
         </div>
-
-        <div class="row text-center">
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="w-100 shadow p-3 rounded card-hover-box">
-                    <img src="/Data/Images/Icon_project.png" alt="Docs" class="img-fluid mb-3" />
-                    <h4>Project</h4>
-                    <p>Create, Manage the project efficiently.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="w-100 shadow p-3 rounded card-hover-box">
-                    <img src="/Data/Images/Icon_Management.jpg" alt="Sheets" class="img-fluid mb-3" />
-                    <h4>Management</h4>
-                    <p>Manage team, software development life cycle, planning and tracking the progress.</p>
-                </div>
-            </div>
-
-            <div class="col-md-4 d-flex align-items-stretch">
-                <div class="w-100 shadow p-3 rounded card-hover-box">
-                    <img src="/Data/Images/img_Calendar.jpg" alt="Calendar" class="img-fluid mb-3" />
-                    <h4>Timesheet</h4>
-                    <p>Stay organized with Timesheet which helps in auto attendance for employees.</p>
-                </div>
-            </div>
-        </div>
-
-        <hr class="my-5" />
-
-        <!-- Work Smarter Section with Clock on Side -->
-        <div class="row align-items-center justify-content-center my-5">
-            <div class="col-md-8 text-center">
-                <h2>Work Smarter, Together</h2>
-                <p>Built for teams. Designed for productivity.</p>
-                <a href="/Home/Registration" class="btn btn-success">Register</a>
-            </div>
-            <div class="col-md-4 text-center">
-                <!-- Analog Clock -->
-                <div class="clock" id="analogClock">
-                    <!-- Hands -->
-                    <div class="hand hour" id="hour"></div>
-                    <div class="hand minute" id="minute"></div>
-                    <div class="hand second" id="second"></div>
-                    <div class="center-circle"></div>
-
-                    <!-- Numbers -->
-                    <div class="number num1">1</div>
-                    <div class="number num2">2</div>
-                    <div class="number num3">3</div>
-                    <div class="number num4">4</div>
-                    <div class="number num5">5</div>
-                    <div class="number num6">6</div>
-                    <div class="number num7">7</div>
-                    <div class="number num8">8</div>
-                    <div class="number num9">9</div>
-                    <div class="number num10">10</div>
-                    <div class="number num11">11</div>
-                    <div class="number num12">12</div>
-                </div>
-            </div>
-        </div>
-
     </div>
-</div>
-
-<!-- Analog Clock Script -->
-<script>
-    // Add tick marks dynamically
-    const clock = document.getElementById("analogClock");
-    for (let i = 0; i < 60; i++) {
-        const tick = document.createElement("div");
-        tick.className = "tick";
-        if (i % 5 === 0) tick.classList.add("hour-mark");
-        tick.style.transform = `rotate(${i * 6}deg) translateX(-50%)`;
-        clock.appendChild(tick);
-    }
-
-    function updateAnalogClock() {
-        const now = new Date();
-        const second = now.getSeconds();
-        const minute = now.getMinutes();
-        const hour = now.getHours();
-
-        const secondDeg = ((second / 60) * 360);
-        const minuteDeg = ((minute / 60) * 360) + ((second / 60) * 6);
-        const hourDeg = ((hour % 12) / 12 * 360) + ((minute / 60) * 30);
-
-        document.getElementById("second").style.transform = `rotate(${secondDeg}deg) translateX(0%)`;
-        document.getElementById("minute").style.transform = `rotate(${minuteDeg}deg) translateX(0%)`;
-        document.getElementById("hour").style.transform = `rotate(${hourDeg}deg) translateX(0%)`;
-    }
-
-    setInterval(updateAnalogClock, 1000);
-    updateAnalogClock();
-</script>
+</body>

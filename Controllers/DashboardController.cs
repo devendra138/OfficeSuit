@@ -21,7 +21,7 @@ namespace OfficeSuit.Controllers
 
         public IActionResult SetView()
         {
-            int designationId = Convert.ToInt32(HttpContext.Session.GetString("DesignationId"));
+            int designationId = (int)HttpContext.Session.GetInt32("DesignationId");
             switch (designationId)
             {
                 case 1:
@@ -146,6 +146,11 @@ namespace OfficeSuit.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Attendance()
+        {
+            return View();
         }
     }
 }

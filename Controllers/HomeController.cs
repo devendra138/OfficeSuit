@@ -10,7 +10,6 @@ namespace OfficeSuit.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         private readonly IConfiguration _configuration;
 
         public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
@@ -67,23 +66,23 @@ namespace OfficeSuit.Controllers
                             employeeId = Convert.ToInt32(reader["UserId"]);
                         }
 
-                        // Important: CLOSE the reader before accessing output param
+                        // Close reader before accessing output param
                         reader.Close();
                         int result = (int)cmd.Parameters["@Result"].Value;
 
                         switch (result)
                         {
                             case 1:
-                                // Store in session
                                 HttpContext.Session.SetInt32("EmployeeId", employeeId);
                                 HttpContext.Session.SetString("FirstName", firstName);
                                 HttpContext.Session.SetString("LastName", lastName);
                                 HttpContext.Session.SetString("Designation", GetDesignationName(Convert.ToInt32(designationId)));
-                                HttpContext.Session.SetString("Email", email); // optional
+                                HttpContext.Session.SetInt32("DesignationId", designationId);
+                                HttpContext.Session.SetString("Email", email);
 
                                 TempData["Login"] = "Login successful.";
                                 MarkAttendance(employeeId);
-                                return RedirectToAction("Index", "Dashboard");
+                                return RedirectToAction("SetView", "Dashboard");
 
                             case -1:
                                 TempData["Login"] = "Invalid email or password.";
@@ -143,7 +142,6 @@ namespace OfficeSuit.Controllers
                     cmd.Parameters.AddWithValue("@Gender", user.Gender);
                     cmd.Parameters.AddWithValue("@DesignationId", user.DesignationId);
 
-                    // OUTPUT parameter
                     SqlParameter resultParam = new SqlParameter("@Result", SqlDbType.Int)
                     {
                         Direction = ParameterDirection.Output
@@ -172,7 +170,7 @@ namespace OfficeSuit.Controllers
                             return RedirectToAction("Registration");
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         TempData["Error"] = "An error occurred during registration. Please try again.";
                         return RedirectToAction("Registration");
@@ -180,7 +178,6 @@ namespace OfficeSuit.Controllers
                 }
             }
         }
-
 
         string GetDesignationName(int designationCode)
         {

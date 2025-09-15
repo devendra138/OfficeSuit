@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Employee Attendance";
+}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center">Employee Attendance Details</h2>
+
+    <!-- Filter Section -->
+    <form method="get" class="row mb-4">
+        <div class="col-md-3">
+            <input type="text" name="EmployeeName" class="form-control" placeholder="Search by Name" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="FromDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <input type="date" name="ToDate" class="form-control" />
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary w-100">Filter</button>
+        </div>
+    </form>
+
+    <!-- Attendance Table -->
+    <table class="table table-bordered table-striped shadow-sm">
+        <thead class="table-dark">
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>In Time</th>
+                <th>Out Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Example static data – replace with Model loop *@
+            <tr>
+                <td>EMP001</td>
+                <td>John Doe</td>
+                <td>2025-09-04</td>
+                <td>09:00 AM</td>
+                <td>06:00 PM</td>
+                <td><span class="badge bg-success">Present</span></td>
+            </tr>
+            <tr>
+                <td>EMP002</td>
+                <td>Jane Smith</td>
+                <td>2025-09-04</td>
+                <td>-</td>
+                <td>-</td>
+                <td><span class="badge bg-danger">Absent</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
