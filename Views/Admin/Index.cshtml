@@ -1,0 +1,71 @@
+﻿@model IEnumerable<OfficeSuit.Models.ProjectModel>
+
+@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Projects";
+}
+
+<h2 class="mb-3">Projects</h2>
+
+<!-- Button to open modal -->
+<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createProjectModal">
+    + New Project
+</button>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Manager ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var project in Model)
+            {
+                <tr>
+                    <td>@project.ProjectName</td>
+                    <td>@project.Description</td>
+                    <td>@project.StartDate?.ToShortDateString()</td>
+                    <td>@project.EndDate?.ToShortDateString()</td>
+                    <td>@project.ProjectManagerID</td>
+                    <td>
+                        <form asp-action="Delete" asp-route-id="@project.ProjectId" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure you want to delete this project?');">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center text-muted">No projects found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal for adding project -->
+<!-- Modal -->
+<div class="modal fade" id="createProjectModal" tabindex="-1" aria-labelledby="createProjectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createProjectModalLabel">Add New Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("_CreateProjectPartial", new OfficeSuit.Models.ProjectModel())
+            </div>
+        </div>
+    </div>
+</div>

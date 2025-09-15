@@ -183,6 +183,7 @@
                 @if (designationId == 1)
                 {
                     <a asp-controller="Dashboard" asp-action="Index" class="list-group-item sidebar-link @(currentController == "Dashboard" && currentAction == "Index" ? "active" : "")">🏠 Dashboard</a>
+                    <a asp-controller="Admin" asp-action="Index" class="list-group-item sidebar-link @(currentController == "Admin" && currentAction == "Index" ? "active" : "")">📁 Project </a>
                 }
                 @if (designationId == 2)
                 {
