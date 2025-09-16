@@ -11,5 +11,16 @@ namespace OfficeSuit.Models
 
         public DbSet<ProjectModel> Projects { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Configure relationship
+            modelBuilder.Entity<ProjectModel>()
+                .HasOne(p => p.Manager)
+                .WithMany(u => u.Projects)
+                .HasForeignKey(p => p.ProjectManagerID);
+        }
     }
 }

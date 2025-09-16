@@ -13,27 +13,30 @@ namespace OfficeSuit.Controllers
         }
         public IActionResult Index()
         {
-            var projectList = _context.Projects.ToList(); // fetch from DB
-            return View(projectList);
+            var projects = _context.Projects
+                                   .Include(p => p.Manager)
+                                   .ToList();
+            // pass managers for dropdown
+            ViewBag.Managers = _context.UserInfo
+                                       .Where(u => u.DesignationId == 2)
+                                       .ToList();
+
+            return View(projects);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Project project)
+        public IActionResult Create(ProjectModel project)
         {
             if (ModelState.IsValid)
             {
-                //_context.Projects.Add(project);
-                //_context.SaveChanges();
-                //return RedirectToAction(nameof(Index));
-                var projects = _context.Projects
-                           .Include(p => p.Manager) // join with UserInfo
-                           .ToList();
-                return View(projects);
+                _context.Projects.Add(project);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
             }
 
-            // If validation fails, reload Index with list
-            return View("Index", _context.Projects.ToList());
+            ViewBag.Managers = _context.UserInfo.Where(u => u.DesignationId == 2).ToList();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

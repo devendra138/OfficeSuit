@@ -28,7 +28,7 @@ namespace OfficeSuit.Models
         [Display(Name = "Project Manager")]
         public int ProjectManagerID { get; set; }
 
-        [ForeignKey("ProjectManagerID")]
-        public UserInfo Manager { get; set; }   // 👈 references UserInfo
+        [ForeignKey(nameof(ProjectManagerID))]
+        public UserInfo? Manager { get; set; }   // 👈 references UserInfo
     }
 }

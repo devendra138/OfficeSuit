@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OfficeSuit.Models
 {
@@ -41,6 +42,12 @@ namespace OfficeSuit.Models
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        // Navigation: A Manager can manage many projects
+        public ICollection<ProjectModel> Projects { get; set; }
+
+        [NotMapped]
+        public string FullName => $"{FirstName} {LastName}";
 
     }
 }
