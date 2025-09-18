@@ -3,9 +3,11 @@
     var firstName = Context.Session.GetString("FirstName");
     var lastName = Context.Session.GetString("LastName");
     var designationId = Context.Session.GetInt32("DesignationId") ?? 0;
+    var userId = Context.Session.GetInt32("EmployeeId") ?? 0;
 
     var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
     var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    var ProjectId = Context.Session.GetInt32("ProjectId") ?? 0;
 }
 
 <!DOCTYPE html>
@@ -187,7 +189,9 @@
                 }
                 @if (designationId == 2)
                 {
-                    <a asp-controller="Dashboard" asp-action="Attendance" class="list-group-item sidebar-link @(currentController == "Dashboard" && currentAction == "Attendance" ? "active" : "")">📅 Attendance</a>
+                    <a asp-controller="Dashboard" asp-action="Attendance" asp-route-projectId="@ProjectId" class="list-group-item sidebar-link @(currentController == "Dashboard" && currentAction == "Attendance" ? "active" : "")">📅 Attendance</a>
+                    <a asp-controller="Manager" asp-action="Index" asp-route-id="@userId" class="list-group-item sidebar-link @(currentController == "Manager" && currentAction == "Index" ? "active" : "")">📊 Project</a>
+                    <a asp-controller="Manager" asp-action="Tasks" asp-route-projectId="@ProjectId" class="list-group-item sidebar-link @(currentController == "Manager" && currentAction == "Tasks" ? "active" : "")">📝 Tasks</a>
                 }
                 <a asp-controller="Dashboard" asp-action="Profile" class="list-group-item sidebar-link @(currentController == "Dashboard" && currentAction == "Profile" ? "active" : "")">👤 Profile</a>
                 <a asp-controller="User" asp-action="Settings" class="list-group-item sidebar-link @(currentController == "User" && currentAction == "Settings" ? "active" : "")">⚙️ Settings</a>

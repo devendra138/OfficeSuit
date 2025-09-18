@@ -7,9 +7,11 @@ namespace OfficeSuit.Controllers
     public class AdminController : Controller
     {
         private readonly AppDbContext _context;
-        public AdminController(AppDbContext context)
+        private readonly IConfiguration _configuration;
+        public AdminController(AppDbContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
         public IActionResult Index()
         {

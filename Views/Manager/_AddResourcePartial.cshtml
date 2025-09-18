@@ -1,0 +1,12 @@
+﻿@model OfficeSuit.Models.ProjectResource
+
+<form asp-action="AddProjectResource" method="post">
+    <input type="hidden" asp-for="ProjectId" value="@ViewBag.ProjectId" />
+
+    <div class="form-group">
+        <label>Select User</label>
+        <select asp-for="UserId" asp-items="ViewBag.Users" class="form-control"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Add Resource</button>
+</form>

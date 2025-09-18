@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    ViewData["Title"] = "Manager";
+    var resources = ViewBag.Resources as List<OfficeSuit.Models.ProjectResource> ?? new List<OfficeSuit.Models.ProjectResource>();
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewBag.ProjectName</h2>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addResourceModal">
+            ➕ Add Resource
+        </button>
+    </div>
+
+
+    @if (resources.Any())
+    {
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>Designation Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var res in resources)
+                {
+                    <tr>
+                        <td>@res.Id</td>
+                        <td>@res.UserName</td>
+                        <td>@res.DesignationName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-warning mt-3">No resources found for this project.</p>
+    }
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addResourceModal" tabindex="-1" aria-labelledby="addResourceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addResourceModalLabel">Add Resource</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @await Html.PartialAsync("_AddResourcePartial", new OfficeSuit.Models.ProjectResource { ProjectId = @ViewBag.ProjectId })
+            </div>
+        </div>
+    </div>
+</div>

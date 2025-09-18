@@ -11,6 +11,11 @@ namespace OfficeSuit.Models
 
         public DbSet<ProjectModel> Projects { get; set; }
         public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet<ProjectResource> ProjectResources { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +26,7 @@ namespace OfficeSuit.Models
                 .HasOne(p => p.Manager)
                 .WithMany(u => u.Projects)
                 .HasForeignKey(p => p.ProjectManagerID);
+
         }
     }
 }
