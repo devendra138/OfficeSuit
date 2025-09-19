@@ -31,11 +31,11 @@ namespace OfficeSuit.Controllers
                 HttpContext.Session.SetInt32("ProjectId", project.ProjectId);
                 ViewBag.Resources = resources;
 
-                //var users = _context.UserInfo
-                //        .Where(u => u.IsActive == 1 && u.DesignationId != 1 && u.DesignationId != 2)
-                //        .Select(u => new { u.UserId, FullName = u.FirstName + " " + u.LastName })
-                //        .ToList();
-                //ViewBag.Users = new SelectList(users, "UserId", "FullName");
+                var users = _context.UserInfo
+                        .Where(u => u.IsActive == 1 && u.DesignationId != 1 && u.DesignationId != 2)
+                        .Select(u => new { u.UserId, FullName = u.FirstName + " " + u.LastName })
+                        .ToList();
+                ViewBag.Users = new SelectList(users, "UserId", "FullName");
             }
             else
             {
