@@ -7,37 +7,43 @@
     <h2 class="contact-title">Contact Us</h2>
     <p class="contact-subtitle">Connect with us on these platforms:</p>
 
+    <!-- Image Section -->
+    <div class="contact-image">
+        <img src="Data/images/contact_banner.jpg" alt="Contact Banner">
+    </div>
+
     <div class="social-links">
         <!-- WhatsApp -->
-        <a href="https://wa.me/1234567890" target="_blank" class="social-icon whatsapp">
+        <a href="https://wa.me/7350395538" target="_blank" class="social-icon whatsapp">
             <i class="bi bi-whatsapp"></i>
             <span>WhatsApp</span>
         </a>
 
         <!-- Instagram -->
-        <a href="https://instagram.com/yourprofile" target="_blank" class="social-icon instagram">
+        <a href="https://www.instagram.com/darshu_1246" target="_blank" class="social-icon instagram">
             <i class="bi bi-instagram"></i>
             <span>Instagram</span>
         </a>
 
         <!-- Facebook -->
-        <a href="https://facebook.com/yourprofile" target="_blank" class="social-icon facebook">
+        <a href="https://www.facebook.com/share/16HCv1yf2w/" target="_blank" class="social-icon facebook">
             <i class="bi bi-facebook"></i>
             <span>Facebook</span>
         </a>
 
         <!-- GitHub -->
-        <a href="https://github.com/yourusername" target="_blank" class="social-icon github">
+        <a href="https://github.com/darshan077-cyber" target="_blank" class="social-icon github">
             <i class="bi bi-github"></i>
             <span>GitHub</span>
         </a>
 
         <!-- LinkedIn -->
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" class="social-icon linkedin">
+        <a href="https://www.linkedin.com/in/darshan-rawool-838a8a28b" target="_blank" class="social-icon linkedin">
             <i class="bi bi-linkedin"></i>
             <span>LinkedIn</span>
         </a>
     </div>
+
 </div>
 
 <!-- CSS Styling -->
@@ -45,6 +51,10 @@
     .contact-container {
         text-align: center;
         margin-top: 50px;
+        background-image: url('Data/images/contact_banner.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .contact-title {
@@ -57,6 +67,15 @@
         font-size: 1.1rem;
         margin-bottom: 30px;
         color: #555;
+    }
+
+    /* New Image Styling */
+    .contact-image img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
     }
 
     .social-links {
@@ -75,6 +94,7 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         width: 100px;
     }
+
 
         .social-icon i {
             font-size: 2.5rem;

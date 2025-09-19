@@ -123,6 +123,19 @@ namespace OfficeSuit.Controllers
             return View();
         }
 
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult About()
+        {
+            return View();
+        }
+
         public IActionResult UserRegistration(UserInfo user)
         {
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
