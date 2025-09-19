@@ -193,6 +193,11 @@
                     <a asp-controller="Manager" asp-action="Index" asp-route-id="@userId" class="list-group-item sidebar-link @(currentController == "Manager" && currentAction == "Index" ? "active" : "")">📊 Project</a>
                     <a asp-controller="Manager" asp-action="Tasks" asp-route-projectId="@ProjectId" class="list-group-item sidebar-link @(currentController == "Manager" && currentAction == "Tasks" ? "active" : "")">📝 Tasks</a>
                 }
+                @if (designationId == 3 || designationId == 4)
+                {
+                    <a asp-controller="Employee" asp-action="Index" asp-route-id="@userId" class="list-group-item sidebar-link @(currentController == "Employee" && currentAction == "Index" ? "active" : "")">📝 Tasks</a>
+
+                }
                 <a asp-controller="Dashboard" asp-action="Profile" class="list-group-item sidebar-link @(currentController == "Dashboard" && currentAction == "Profile" ? "active" : "")">👤 Profile</a>
                 <a asp-controller="User" asp-action="Settings" class="list-group-item sidebar-link @(currentController == "User" && currentAction == "Settings" ? "active" : "")">⚙️ Settings</a>
                 <a asp-controller="Home" asp-action="Logout" class="list-group-item sidebar-link @(currentController == "Home" && currentAction == "Logout" ? "active" : "")">🚪 Logout</a>

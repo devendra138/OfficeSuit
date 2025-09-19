@@ -34,10 +34,10 @@ namespace OfficeSuit.Controllers
                     return RedirectToAction("Index", "Manager", new { id = employeeId });
 
                 case 3:
-                    return RedirectToAction("DeveloperPage");
+                    return RedirectToAction("Index", "Employee", new { id = employeeId });
 
                 case 4:
-                    return RedirectToAction("TesterPage");
+                    return RedirectToAction("Index", "Employee", new { id = employeeId });
 
                 default:
                     return RedirectToAction("");
