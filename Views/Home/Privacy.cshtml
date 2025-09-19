@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<div class="privacy-container">
+    <!-- Hero Section -->
+    <div class="privacy-hero">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is our priority. Learn how we protect your data.</p>
+    </div>
+
+    <!-- Icons Section -->
+    <div class="privacy-features">
+        <div class="feature">
+            <i class="bi bi-shield-lock"></i>
+            <h3>Data Protection</h3>
+            <p>We use industry-standard security to safeguard your personal data.</p>
+        </div>
+        <div class="feature">
+            <i class="bi bi-cookie"></i>
+            <h3>Cookies</h3>
+            <p>Our website uses cookies only to improve your browsing experience.</p>
+        </div>
+        <div class="feature">
+            <i class="bi bi-people"></i>
+            <h3>Your Rights</h3>
+            <p>You have full control over your data, including access and deletion.</p>
+        </div>
+    </div>
+
+    <!-- Accordion Section -->
+    <div class="privacy-accordion">
+        <button class="accordion">Information We Collect</button>
+        <div class="panel">
+            <p>We collect basic user data such as name, email, and usage patterns to improve services.</p>
+        </div>
+
+        <button class="accordion">How We Use Your Data</button>
+        <div class="panel">
+            <p>Your data helps us provide better features, ensure security, and personalize your experience.</p>
+        </div>
+
+        <button class="accordion">Contact Us</button>
+        <div class="panel">
+            <p>If you have questions, reach us via email at support@officesuit.com.</p>
+        </div>
+    </div>
+</div>
+
+<!-- CSS Styling -->
+<style>
+    .privacy-container {
+        padding: 40px;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Hero */
+    .privacy-hero {
+        text-align: center;
+        background: url('/images/privacy-bg.jpg') no-repeat center/cover;
+        color: white;
+        padding: 80px 20px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+
+        .privacy-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+    /* Features */
+    .privacy-features {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+    }
+
+    .feature {
+        background: #f9f9f9;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        width: 250px;
+        transition: transform 0.3s ease;
+    }
+
+        .feature i {
+            font-size: 2rem;
+            color: #0A66C2;
+            margin-bottom: 10px;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+    /* Accordion */
+    .accordion {
+        background-color: #0A66C2;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        margin: 5px 0;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: background 0.3s;
+        width: 100%;
+    }
+
+        .accordion:hover {
+            background-color: #084a91;
+        }
+
+    .panel {
+        padding: 0 15px;
+        display: none;
+        background-color: #f9f9f9;
+        overflow: hidden;
+        border-radius: 0 0 8px 8px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- Accordion JS -->
+<script>
+    const acc = document.querySelectorAll(".accordion");
+    acc.forEach(button => {
+        button.addEventListener("click", function () {
+            this.classList.toggle("active");
+            let panel = this.nextElementSibling;
+            panel.style.display = (panel.style.display === "block") ? "none" : "block";
+        });
+    });
+</script>
