@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    ViewData["Title"] = "Tasks";
+    TempData["Title"] = "Tasks";
     var tasks = ViewBag.Tasks as List<OfficeSuit.Models.Tasks> ?? new List<OfficeSuit.Models.Tasks>();
     var resources = ViewBag.Resources as List<OfficeSuit.Models.ProjectResource> ?? new List<OfficeSuit.Models.ProjectResource>();
 }

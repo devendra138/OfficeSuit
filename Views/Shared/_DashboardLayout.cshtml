@@ -14,7 +14,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>@ViewData["Title"] - OfficeSuit</title>
+    <title>@TempData["Title"] - OfficeSuit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Bootstrap CSS -->
@@ -154,6 +154,20 @@
                 wrapper.classList.toggle("toggled");
             });
         });
+    </script>
+    <script>
+        @if (TempData["Login"] != null)
+        {
+                        var message = TempData["Login"].ToString();
+                        var iconType = message == "Login Successful." ? "success" : "error";
+                        <text>
+                            Swal.fire({
+                                icon: '@iconType',
+                                title: '@(iconType == "success" ? "Success" : "Error")',
+                                text: '@message'
+                            });
+                        </text>
+        }
     </script>
 </head>
 

@@ -1,7 +1,7 @@
 ﻿@model UserProfile
 
 @{
-    ViewData["Title"] = "UserProfile";
+    TempData["Title"] = "UserProfile";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     var imagePath = string.IsNullOrEmpty(Model.ProfileImage)
