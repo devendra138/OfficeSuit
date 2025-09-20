@@ -13,23 +13,16 @@ namespace OfficeSuit.Controllers
             _context = context;
             _configuration = configuration;
         }
+
         public IActionResult Index(int id)
         {
-            // get ProjectId from session
-            //int? projectId = HttpContext.Session.GetInt32("ProjectId");
-
-            //if (projectId == null)
-            //{
-            //    return RedirectToAction("Index", "Projects"); // or wherever you want
-            //}
-
-            // fetch task only if it belongs to that project
             var task = _context.Tasks
-                               .FirstOrDefault(t => t.UserId == id );
+                               .FirstOrDefault(t => t.UserId == id);
 
             if (task == null)
             {
-                return NotFound(); // Task not found or not in this project
+                ViewBag.Message = "No task found for this employee.";
+                return View();   // ✅ load Index.cshtml without model
             }
 
             return View(task);
@@ -38,8 +31,7 @@ namespace OfficeSuit.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditStatus(int id, string status)
-        {            
-
+        {
             var task = _context.Tasks
                                .FirstOrDefault(t => t.TaskId == id);
 

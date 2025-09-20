@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Feedback";
+}
+
+<div class="feedback-hero">
+    <h1 class="title">We Value Your <span class="highlight">Feedback</span></h1>
+    <p class="subtitle">Help us improve by sharing your thoughts ✨</p>
+</div>
+
+<div class="feedback-container">
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert success">@TempData["Success"]</div>
+    }
+    else if (TempData["Error"] != null)
+    {
+        <div class="alert error">@TempData["Error"]</div>
+    }
+
+    <div class="feedback-card">
+        <form asp-action="Feedback" method="post">
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Name</label>
+                <input type="text" name="name" required />
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-comment-dots"></i> Message</label>
+                <textarea name="message" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-star"></i> Rating</label>
+                <select name="rating" required>
+                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                    <option value="4">⭐⭐⭐⭐ Good</option>
+                    <option value="3">⭐⭐⭐ Average</option>
+                    <option value="2">⭐⭐ Poor</option>
+                    <option value="1">⭐ Very Bad</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-paper-plane"></i> Send Feedback
+            </button>
+        </form>
+    </div>
+</div>

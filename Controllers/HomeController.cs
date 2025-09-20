@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using OfficeSuit.Models;
@@ -135,6 +135,55 @@ namespace OfficeSuit.Controllers
         {
             return View();
         }
+        // Feedback Page GET
+        [HttpGet]
+        public IActionResult Feedback()
+        {
+            return View();
+        }
+
+        // Feedback Page POST
+        [HttpPost]
+        public async Task<IActionResult> Feedback(string name, string email, string message, int rating)
+        {
+            try
+            {
+                
+                string subject = "New Feedback Received - OfficeSuit";
+                string body = $@"
+                <h2>New Feedback Submission</h2>
+                <p><strong>Name:</strong> {name}</p>
+                <p><strong>Email:</strong> {email}</p>
+                <p><strong>Message:</strong> {message}</p>
+                <p><strong>Rating:</strong> {rating} ⭐</p>
+                ";
+
+               
+                using (var client = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587))
+                {
+                    client.EnableSsl = true;
+                    client.Credentials = new System.Net.NetworkCredential("rawooldarshan700@gmail.com", "mris gxsp fkei sgww");
+
+                    var mailMessage = new System.Net.Mail.MailMessage();
+                    mailMessage.From = new System.Net.Mail.MailAddress("rawooldarshan700@gmail.com");
+                    mailMessage.To.Add("rawooldarshan700@gmail.com"); 
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = true;
+
+                    await client.SendMailAsync(mailMessage);
+                }
+
+                TempData["Success"] = "Thank you for your feedback! We have received your response.";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Something went wrong while sending feedback. " + ex.Message;
+            }
+
+            return RedirectToAction("Feedback");
+        }
+
 
         public IActionResult UserRegistration(UserInfo user)
         {

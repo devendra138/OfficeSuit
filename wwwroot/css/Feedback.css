@@ -1,0 +1,136 @@
+﻿/* Hero Section */
+.feedback-hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    border-radius: 0 0 50px 50px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+    .feedback-hero .title {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .feedback-hero .highlight {
+        color: #facc15;
+    }
+
+    .feedback-hero .subtitle {
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+/* Container */
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* Card */
+.feedback-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    max-width: 500px;
+    width: 100%;
+    animation: fadeInUp 1s ease-in-out;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #1e3a8a;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #e5e7eb;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+            outline: none;
+        }
+
+/* Button */
+.btn-submit {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .btn-submit:hover {
+        background: #1e40af;
+        transform: translateY(-3px);
+    }
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+    .alert.success {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .alert.error {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
