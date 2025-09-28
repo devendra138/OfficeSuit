@@ -43,6 +43,7 @@
                                     "2" => "Started",
                                     "3" => "Pending",
                                     "4" => "Completed",
+                                    _ => "Unknown"
                                 };
                             }
                             @statusText
@@ -84,12 +85,9 @@
                         <label class="form-label">Assign To</label>
                         <select name="UserId" class="form-select" required>
                             <option value="">-- Select User --</option>
-                            @if (resources != null)
+                            @foreach (var user in resources)
                             {
-                                foreach (var user in resources)
-                                {
-                                    <option value="@user.UserId">@user.UserName</option>
-                                }
+                                <option value="@user.Id">@user.UserName</option>
                             }
                         </select>
                     </div>
