@@ -11,7 +11,7 @@ namespace OfficeSuit.Models
         [StringLength(200)]
         public string TaskName { get; set; }
 
-        [StringLength(1000)]
+        [StringLength(50)]
         public string Description { get; set; }
 
         [Display(Name = "Assigned To")]

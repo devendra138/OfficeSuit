@@ -1,4 +1,6 @@
-﻿@{
+﻿@model OfficeSuit.Models.Tasks;
+@{
+
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
     TempData["Title"] = "Tasks";
     var tasks = ViewBag.Tasks as List<OfficeSuit.Models.Tasks> ?? new List<OfficeSuit.Models.Tasks>();
@@ -77,8 +79,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Description</label>
-                        <textarea name="Description" class="form-control"></textarea>
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
 
                     <div class="mb-3">
